@@ -6,6 +6,7 @@ var LocalStrategy = require('passport-local').Strategy;
 
 // load up the user model
 var db = require('../models');
+var salt = bcrypt.genSaltSync(8);
 
 // expose this function to our app using module.exports
 module.exports = function(passport) {
@@ -36,8 +37,8 @@ module.exports = function(passport) {
 
     function generateHash(password, cb) {
         console.log(password);
-        console.log(err, salt);
-        bcrypt.hash(password, 8, null, cb);
+        // console.log(salt);
+        bcrypt.hash(password, salt, null, cb);
     }
 
     passport.use('local-signup', new LocalStrategy({
