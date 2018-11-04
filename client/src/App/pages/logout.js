@@ -5,7 +5,7 @@ class Logout extends Component {
     render() {
         return (
             <div className='container'>
-            <Link to={'./logout'}>
+            <Link to={'/'}>
             <button className='phoneHome'>Home</button>
             </Link>
             </div>
