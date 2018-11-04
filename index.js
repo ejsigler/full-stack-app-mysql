@@ -3,8 +3,11 @@ const path = require('path');
 const mysql = require('mysql2');
 const Sequelize = require('Sequelize');
 const passport = require('passport');
+var cors = require('cors');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+const fileUpload = require('express-fileupload');
+
 require('./config/passport.js')(passport);
 
 
@@ -33,10 +36,11 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
+app.use(cors());
+app.use(fileUpload());
+
 app.use(cookieParser()); // read cookies (needed for auth)
 app.use(bodyParser()); // get information from html forms
-
-
 
 //Test the Connection
 db.sequelize
@@ -109,6 +113,93 @@ app.get('/api/:username', (req, res) => {
         .then(user => { res.json(user) })
     console.log('Sent list of items');
 });
+
+//Endpoint for uploading a profile pic
+app.post('/users/profilePic/upload', (req, res) => {
+    let imageFile = req.files.file;
+    //console.log(req.user.annotation_id);
+
+    imageFile.mv(`${__dirname}/images/${req.body.filename}.jpg`, (err) => {
+        if (err) {
+            console.log(err);
+            return res.status(500).send(err);
+        }
+        console.log(req.body.userName);
+
+        //Add filepath to db 
+        db.developers.update({
+            imageURL: `${__dirname}/images/${req.body.filename}.jpg`,
+        }, {
+                where: { userName: req.body.userName },
+            }).then(res.json({ file: `images/${req.body.filename}.jpg` }))
+    });
+
+})
+
+//Endpoint for updating a profile pic
+app.post('/users/profilePic/replace', (req, res, next) => {
+    //console.log(req);
+    let imageFile = req.files.file;
+
+    developers.findOne({
+        where: { userName: req.body.userName },
+        attributes: [`imageURL`]
+    }).then((imageURL) => {
+        //Delete existing image
+        fs.unlink(imageURL, (err) => {
+            console.log('deleted existing, now to replace');
+            if (err) {
+                return res.status(500).send(err);
+            }
+
+            //Replace with new image
+            imageFile.mv(`${__dirname}/images/${req.body.filename}.jpg`, (err) => {
+                if (err) {
+                    return res.status(500).send(err);
+                }
+
+                console.log('new image added to the file system');
+
+                //Update filepath in db 
+                developers.update({
+                    imageURL: `${__dirname}/images/${req.body.filename}.jpg`,
+                }, {
+                        where: { userName: req.body.userName },
+                    }).then(res.json({ file: `images/${req.body.filename}.jpg` }))
+            })
+        })
+    }
+    )
+})
+
+//Endpoint for deleting a profile pic
+app.post('/users/profilePic/delete', (req, res, next) => {
+    //console.log(req.body);
+
+    developers.findOne({
+        where: { userName: req.body.userName },
+        attributes: [`imageURL`]
+    }).then((imageURL) => {
+        console.log(imageURL.get().imageURL);
+        fs.unlink(imageURL.get().imageURL, (err) => {
+            if (err) {
+                console.log(err);
+                return res.status(500).send(err);
+            }
+
+            //Delete filepath in db, set imageURL to null and return
+            developers.update({
+                imageURL: null,
+            }, {
+                    where: { userName: req.body.userName },
+                }).then(res.json({ file: `` }))
+        })
+    }
+    )
+
+})
+
+
 
 // Handles any requests that don't match the ones above
 app.get('*', (req, res) => {
