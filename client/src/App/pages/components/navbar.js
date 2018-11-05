@@ -33,7 +33,13 @@ class Navheader extends Component {
 							<a className="page-scroll" href="#team">TEAM</a>
 						</li>
 						<li>
-						<a href="/signup" className="page-scroll btn btn-sm">SING UP</a>
+						<a href="../profile" className="page-scroll">PROFILE</a>
+						</li>
+						<li>
+						<a href="/signup" className="page-scroll">SIGN UP</a>
+						</li>
+						<li>
+						<a href="../logout" className="page-scroll">LOGOUT</a>
 						</li>
 					</ul>
 				</div>

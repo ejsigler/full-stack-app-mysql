@@ -8,7 +8,7 @@ class Footer extends Component {
     return (
     <div>
       <footer>
-			<div class="container text-center">
+			<div class="text-center">
 				<p>@TEAM SAGE</p>
 			</div>
 		</footer>

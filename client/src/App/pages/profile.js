@@ -5,6 +5,9 @@ import Courses from './courses';
 import PE from './pastEmployments';
 import CE from './currentEmployment';
 import Contact from './contact';
+import Navbar from './components/navbar';
+import Footer from './components/footer';
+
 
 class Profile extends Component {
     constructor(props) {
@@ -71,37 +74,38 @@ class Profile extends Component {
     }
 
     render() {
-     return (
-         <div className='container'>
-            <School />
-            <Courses />
-            <PE />
-            <CE />
-            <Contact />
-            <Link to={'./logout'}>
-            <button className='logout'>Logout</button>
-            </Link>
-            <div className='container'>
-                <a href='/logout'>Logout</a>
-                <form>
-                    <div>
-                        <input ref={(ref) => { this.uploadInput = ref; }} type="file" />
-                    </div>
-                    <div>
-                        <input ref={(ref) => { this.fileName = ref; }} type="text" placeholder="Enter the desired name of file" />
-                    </div>
-                    <br />
-                    <div>
-                        <button name="upload" onClick={this.handleSubmit}>Upload</button>
-                        <button name="replace" onClick={this.handleSubmit}>Replace</button>
+        return (
+            <div>
 
+                <div className='container'>
+                    <Navbar />
+                    <School />
+                    <Courses />
+                    <PE />
+                    <CE />
+                    <Contact />
+                    {/* <Link to={'./logout'}>
+            <button className='logout'>Logout</button>
+        </Link> */}
+                    <div>
+                        {/* <a href='/logout'>Logout</a> */}
+                        <form>
+                            <input id="file-upload" ref={(ref) => { this.uploadInput = ref; }} type="file" />
+                            <input ref={(ref) => { this.fileName = ref; }} type="text" placeholder="Enter desired name" />
+                            <br />
+                            <br />
+                            <div>
+                                <button id="upload-image" name="upload" onClick={this.handleSubmit}>UPLOAD</button>
+                                <button id="replace-image" name="replace" onClick={this.handleSubmit}>REPLACE</button>
+                                <button id="delete-image" name="delete" onClick={this.handleSubmit}>DELETE</button>
+                            </div>
+                            <img id="profile-pic" src={this.state.imageURL} alt="img" />
+                        </form>
                     </div>
-                    <img src={this.state.imageURL} alt="img" />
-                </form>
-                <button name="delete" onClick={this.handleSubmit}>Delete</button>
+                </div>
+                <Footer />
             </div>
-         </div>
-     )
- }   
+        )
+    }
 }
 export default Profile;
