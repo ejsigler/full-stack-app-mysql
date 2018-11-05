@@ -16,7 +16,7 @@ class Navheader extends Component {
 					<span className="icon-bar"></span>
 					<span className="icon-bar"></span>
 					</button>
-					<a className="navbar-brand page-scroll" href="#page-top">Dev. <span className="brand">Portfolio</span></a>
+					<a className="navbar-brand page-scroll" href="../#page-top">Dev. <span className="brand">Portfolio</span></a>
 				</div>
 				<div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<ul className="nav navbar-nav navbar-right">
@@ -27,10 +27,10 @@ class Navheader extends Component {
 							<a className="page-scroll" href="../#about">ABOUT US</a>
 						</li>
 						<li>
-							<a className="page-scroll" href="#portfolio">PORTFOLIO</a>
+							<a className="page-scroll" href="../#portfolio">PORTFOLIO</a>
 						</li>
 						<li>
-							<a className="page-scroll" href="#team">TEAM</a>
+							<a className="page-scroll" href="../#team">TEAM</a>
 						</li>
 						<li>
 						<a href="../profile">PROFILE</a>
