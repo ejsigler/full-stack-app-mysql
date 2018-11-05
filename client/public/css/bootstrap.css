@@ -2525,6 +2525,7 @@ input[type="checkbox"] {
 }
 input[type="file"] {
   display: block;
+  align-items: center
 }
 input[type="range"] {
   display: block;

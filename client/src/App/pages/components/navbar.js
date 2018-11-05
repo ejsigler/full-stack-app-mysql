@@ -24,22 +24,22 @@ class Navheader extends Component {
 							<a href="#page-top"></a>
 						</li>
 						<li>
-							<a className="page-scroll" href="#about">ABOUT US</a>
+							<a className="page-scroll" href="../#about">ABOUT US</a>
 						</li>
 						<li>
-							<a className="page-scroll" href="#portfolio">PORTOFOLIO</a>
+							<a className="page-scroll" href="#portfolio">PORTFOLIO</a>
 						</li>
 						<li>
 							<a className="page-scroll" href="#team">TEAM</a>
 						</li>
 						<li>
-						<a href="../profile" className="page-scroll">PROFILE</a>
+						<a href="../profile">PROFILE</a>
 						</li>
 						<li>
 						<a href="/signup" className="page-scroll">SIGN UP</a>
 						</li>
 						<li>
-						<a href="../logout" className="page-scroll">LOGOUT</a>
+						<a href="/" className="page-scroll">LOGOUT</a>
 						</li>
 					</ul>
 				</div>

@@ -611,8 +611,8 @@ section#contact .form-group input, section#contact .form-group textarea {
 4.8. Profile
 --------------------*/
 
-input[type="file" i] {
-    margin: 15px;
+#file-upload i{
+    margin: 15px !important;
     text-align: center;
 }
 
@@ -622,11 +622,6 @@ button > #upload-image  {
 }
 
 img > #profile-pic  {
-    margin: 15px;
-    text-align: center;
-}
-
-#shadow-root  {
     margin: 15px;
     text-align: center;
 }

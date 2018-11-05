@@ -90,19 +90,19 @@ class Profile extends Component {
                     <div>
                         {/* <a href='/logout'>Logout</a> */}
                         <form>
-                            <input id="file-upload" ref={(ref) => { this.uploadInput = ref; }} type="file" />
+                            <input id="file-upload" className="text-center" ref={(ref) => { this.uploadInput = ref; }} type="file" />
                             <input ref={(ref) => { this.fileName = ref; }} type="text" placeholder="Enter desired name" />
                             <br />
                             <br />
+                        </form>
+                    </div>
+                </div>
                             <div>
                                 <button id="upload-image" name="upload" onClick={this.handleSubmit}>UPLOAD</button>
                                 <button id="replace-image" name="replace" onClick={this.handleSubmit}>REPLACE</button>
                                 <button id="delete-image" name="delete" onClick={this.handleSubmit}>DELETE</button>
                             </div>
-                            <img id="profile-pic" src={this.state.imageURL} alt="img" />
-                        </form>
-                    </div>
-                </div>
+                            <img id="profile-pic" src={this.state.imageURL} alt="profile pic" />
                 <Footer />
             </div>
         )
