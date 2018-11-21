@@ -7,7 +7,10 @@ class List extends Component {
     this.state = {
       list: []
     }
+      
+    
   }
+  
 
   // Fetch the list on first mount
   componentDidMount() {
@@ -54,7 +57,7 @@ class List extends Component {
                       <td>{item.email}</td>
                       <td>{item.phone}</td>
                       <td>{item.githubHandle}</td>
-                      <td><a>Edit</a>|<a>Delete</a></td>
+                     
                     </tr>
                   )
                 }
